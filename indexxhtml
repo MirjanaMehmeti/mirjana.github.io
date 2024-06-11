@@ -1,45 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<head>
-   <title>Mirjana - Portfolio</title>
+    <title>Mirjana - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc; /* Beige background */
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+        footer hr {
+            margin-bottom: 10px;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer a {
+            display: block;
+            margin: 5px 0;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-   
-    div {
-        background-color: green;
-        opacity: 0.3;
-      }
-      
-        <h1>Welcome to My Portfolio</h1>
-        <p>This is a way of showing some of my projects and coding experiences.</p>
-    
+    <h1>Welcome to My Portfolio</h1>
+    <p>This is a way of showing some of my projects and coding experiences.</p>
 
-    
-        <h2>About Me</h2>
-        <p>Hi, I'm Mirjana. I am from Albania and I am international student at CSI. I'm a software engineer working most of the time with different coding languages such as Java, C++, Python. Here's a brief overview of my coding skills and educational background.</p>
-    
+    <h2>About Me</h2>
+    <p>Hi, I'm Mirjana. I am from Albania and I am an international student at CSI. I'm a software engineer working most of the time with different coding languages such as Java, C++, Python. Here's a brief overview of my coding skills and educational background.</p>
 
-    
-        <h2>Skills and Languages</h2>
-        <ul>
-            <li>Python</li>
-            <li>JavaScript</li>
-            <li>C++</li>
-        </ul>
-    
+    <h2>Skills and Languages</h2>
+    <ul>
+        <li>Python</li>
+        <li>JavaScript</li>
+        <li>C++</li>
+    </ul>
 
-    
-        <h2>Links you can work in.</h2>
-        <ol>
-            <li><a href="https://www.sciencebuddies.org/blog/computer-science-coding-projects"> Computer Science coding </a> - Here you can find some coding tips in order to succeed.</li>
-            <li><a href="https://www.veritasai.com/veritasaiblog/https/8-coding-project-ideas-for-high-school-students">Coding ideas</a> - Find and share with your friends some coding ideas.</li>
-            
-        </ol>
-    
+    <h2>Links you can work in</h2>
+    <ol>
+        <li><a href="https://www.sciencebuddies.org/blog/computer-science-coding-projects">Computer Science coding</a> - Here you can find some coding tips in order to succeed.</li>
+        <li><a href="https://www.veritasai.com/veritasaiblog/https/8-coding-project-ideas-for-high-school-students">Coding ideas</a> - Find and share with your friends some coding ideas.</li>
+    </ol>
 
     <footer>
         <hr>
@@ -48,13 +79,6 @@
         <a href="https://github.com/MirjanaMehmeti/mirjana.github.io">My GitHub</a>
     </footer>
 
-    
-    <img src="Best-Programming-Languages-to-Start-Learning-Today.jpg" alt="Coding languages"> 
-
-</body>
-</html>
-</head>
-<body>
-    
+    <img src="Best-Programming-Languages-to-Start-Learning-Today.jpg" alt="Coding languages">
 </body>
 </html>
