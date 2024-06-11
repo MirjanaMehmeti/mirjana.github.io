@@ -9,7 +9,11 @@
 </head>
 <body>
    
-
+    div {
+        background-color: green;
+        opacity: 0.3;
+      }
+      
         <h1>Welcome to My Portfolio</h1>
         <p>This is a way of showing some of my projects and coding experiences.</p>
     
