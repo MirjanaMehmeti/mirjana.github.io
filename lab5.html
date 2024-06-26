@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 75px;
+            background: linear-gradient(to right, #e194b9, #e38bc4);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 740px;
+            background: #f0dfef;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(80, 30, 220, 0.1);
+        }
+        h1 {
+            color: #20309a;
+            margin-bottom: 50px;
+        }
+        .btn-primary {
+            background-color: #ef93c5;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #f194c1;
+        }
+        .alert {
+            display: flex;
+            align-items: center;
+        }
+        .alert span {
+            margin-left: 45px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM fully loaded and parsed');
+            const form = document.getElementById('registrationForm');
+
+            form.addEventListener('submit', handleFormSubmit);
+        });
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            console.log('Form submit event triggered');
+
+            const catfirstName = document.getElementById('catfirstName').value;
+            const catlastName = document.getElementById('catlastName').value;
+            const youremail = document.getElementById('youremail').value;
+            const password = document.getElementById('password').value;
+            const catdateofbirth = document.getElementById('catdateofbirth').value;
+
+            console.log('Form data:', {
+                catfirstName,
+                catlastName,
+                youremail,
+                password,
+                catdateofbirth
+            });
+
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = '';
+
+            if (!validateFields(catfirstName, catlastName, youremail, password, catdateofbirth, resultContainer)) {
+                console.log('Validation failed');
+                return;
+            }
+
+            const user = {
+                catfirstName: catfirstName,
+                catlastName: catlastName,
+                youremail: youremail,
+                password: '*'.repeat(password.length),
+                catdateofbirth: catdateofbirth
+            };
+
+            displaySuccess(user, resultContainer);
+        }
+
+        function validateFields(catfirstName, catlastName, youremail, password, catdateofbirth, resultContainer) {
+            console.log('Validating fields');
+            if (!catfirstName || !catlastName || !youremail || !password || !catdateofbirth) {
+                resultContainer.innerHTML = `<div class="alert alert-danger">❌ All fields must be present. <span>😢</span></div>`;
+                return false;
+            }
+
+            if (!validateEmail(youremail)) {
+                resultContainer.innerHTML = `<div class="alert alert-danger">❌ Invalid email. <span>😢</span></div>`;
+                return false;
+            }
+
+            if (!validatePassword(password)) {
+                resultContainer.innerHTML = `<div class="alert alert-danger">❌ Registration is invalid. Password must contain a special character (! or ?). <span>😢</span></div>`;
+                return false;
+            }
+
+            return true;
+        }
+
+        function validateEmail(youremail) {
+            console.log('Validating email:', youremail);
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(youremail);
+        }
+
+        function validatePassword(password) {
+            console.log('Validating password');
+            const specialCharPattern = /[!?]/;
+            return specialCharPattern.test(password);
+        }
+
+        function displaySuccess(user, resultContainer) {
+            console.log('Displaying success message for user:', user);
+            const resultHTML = `
+                <div class="alert alert-success">✔️ Registration Successful! <span>😊</span></div>
+                <p><strong>Cat's First Name:</strong> ${user.catfirstName}</p>
+                <p><strong>Cat's Last Name:</strong> ${user.catlastName}</p>
+                <p><strong>Your Email:</strong> ${user.youremail}</p>
+                <p><strong>Password:</strong> ${user.password}</p>
+                <p><strong>Cat's Date of Birth:</strong> ${user.catdateofbirth}</p>
+            `;
+            resultContainer.innerHTML = resultHTML;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Cat Registration</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="catfirstName">Cat's First Name</label>
+                <input type="text" class="form-control" id="catfirstName" required>
+            </div>
+            <div class="form-group">
+                <label for="catlastName">Cat's Last Name</label>
+                <input type="text" class="form-control" id="catlastName" required>
+            </div>
+            <div class="form-group">
+                <label for="youremail">Your Email Address</label>
+                <input type="email" class="form-control" id="youremail" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="catdateofbirth">Cat's Date of Birth</label>
+                <input type="date" class="form-control" id="catdateofbirth" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
+        <div class="container"> 
+            <a class="navbar-brand" href="index.html">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav"> 
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                       
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
