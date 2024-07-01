@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Cat Facts</title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            margin: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #120e10;
+            text-align: center;
+        }
+        input[type="button"] {
+            margin: 30px 0;
+            padding: 20px 30px;
+            background-color: #d06dae;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="button"]:hover {
+            background-color: #e17bbe;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 26px;
+        }
+        th, td {
+            border: 2px solid #e9a8d9;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f377c5;
+            color: rgb(251, 250, 251);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        tr:nth-child(even) {
+            background-color: #e9c7e3;
+        }
+        tr:hover {
+            background-color: #f5aed9;
+        }
+        img {
+            margin-top: 25px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(123, 28, 88, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cat Facts</h1>
+    <input type="button" id="fetch-button" value="Get Cat Facts">
+    <table id="cat-facts-table">
+        <tr class="header">
+            <th>factId</th>
+            <th>fact</th>
+        </tr>
+    </table>
+    <br>
+    <img id="cat-image-1" src="catss.jpg" alt="Cat Image" width="650">
+    <img id="cat-image-2" src="placeholder.jpg" width="650">
+    <script>
+        document.getElementById('fetch-button').addEventListener('click', getCatFacts);
+
+        async function getCatFacts() {
+            const url = 'https://brianobruno.github.io/cats.json';
+            const options = {
+                method: 'GET'
+            };
+
+            const response = await fetch(url, options);
+
+            if (response.ok) {
+                const result = await response.text();
+                const myObj = JSON.parse(result);
+                displayCatFacts(myObj.facts);
+                displayCatImage(myObj.catPhoto);
+            } else {
+                console.error('Fetch error:', response.status, response.statusText);
+            }
+        }
+
+        function displayCatFacts(facts) {
+            const sortedFacts = facts.sort((a, b) => a.factId - b.factId);
+            const table = document.getElementById('cat-facts-table');
+            table.innerHTML = `
+                <tr class="header">
+                    <th>factId</th>
+                    <th>fact</th>
+                </tr>
+            `;
+
+            for (let i = 0; i < sortedFacts.length; i++) {
+                const row = table.insertRow();
+                const cellId = row.insertCell(0);
+                const cellText = row.insertCell(1);
+                cellId.textContent = sortedFacts[i].factId;
+                cellText.textContent = sortedFacts[i].text;
+            }
+        }
+
+        function displayCatImage(imageUrl) {
+            document.getElementById('cat-image-1').style.display = 'none';
+            document.getElementById('cat-image-2').src = imageUrl;
+        }
+    </script>
+</body>
+</html>
